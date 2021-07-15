@@ -1,2 +1,5 @@
 ^docsCPI\.Rproj$
 ^\.Rproj\.user$
+^data-raw$
+^app$
+^LICENSE\.md$

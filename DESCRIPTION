@@ -1,15 +1,16 @@
 Package: docsCPI
-Title: What the Package Does (One Line, Title Case)
+Title: Documentos da CPI
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Renata",
+           family = "Hirota",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "re.hirota@gmail.com",
+           comment = c(ORCID = "0000-0002-3589-3246")),
+      person(given = "Volt Data Lab",
+             role = c("cph", "fnd")))
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
