@@ -49,23 +49,18 @@ parse_row <- function(row) {
     xml2::xml_children()
 
   n <- xml2::xml_text(campos[1])
+
   arquivo_nome <- campos[2] %>%
     xml2::xml_find_all(".//li") %>%
     xml2::xml_text()
 
   arquivo_link <- purrr::map(arquivo_nome, get_doclink, campos = campos)
 
-  campos[2] %>%
-    xml2::xml_find_all(stringr::str_c(
-      ".//a[contains(text(), '",
-      arquivo_nome[3],
-      "')]"
-    ))
-
   arquivo <- dplyr::tibble(
     arquivo_nome = arquivo_nome,
     arquivo_link = arquivo_link
   )
+
   data_recebimento <- stringr::str_squish(xml2::xml_text(campos[3]))
   remetente <- stringr::str_squish(xml2::xml_text(campos[4]))
   origem <- stringr::str_squish(xml2::xml_text(campos[5]))

@@ -8,9 +8,13 @@ shinyServer(function(input, output) {
 
   output$docs <- reactable::renderReactable({
     da %>%
+      dplyr::mutate(
+        n = as.integer(n),
+        data_recebimento = lubridate::dmy(data_recebimento)
+      ) %>%
       reactable::reactable(
         columns = list(
-          n = reactable::colDef("N\u00ba", maxWidth = 40),
+          n = reactable::colDef("N\u00ba", maxWidth = 50),
           arquivo_nome = reactable::colDef("Arquivo"),
           arquivo_link = reactable::colDef(
             "Download", cell = function(value) {
@@ -19,7 +23,7 @@ shinyServer(function(input, output) {
             maxWidth = 80
           ),
           data_recebimento = reactable::colDef(
-            "Data de recebimento", maxWidth = 100
+            "Data de recebimento", maxWidth = 120
           ),
           remetente = reactable::colDef("Remetente"),
           origem = reactable::colDef("Origem"),
