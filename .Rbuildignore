@@ -3,3 +3,5 @@
 ^data-raw$
 ^app$
 ^LICENSE\.md$
+^\.github$
+^README\.Rmd$

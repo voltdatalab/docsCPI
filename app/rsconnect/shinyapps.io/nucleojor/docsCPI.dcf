@@ -5,9 +5,9 @@ account: nucleojor
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4390739
-bundleId: 4824266
+bundleId: 4834704
 url: https://nucleojor.shinyapps.io/docsCPI/
-when: 1626392156.93195
-lastSyncTime: 1626392156.93199
+when: 1626708389.4007
+lastSyncTime: 1626708389.40072
 asMultiple: FALSE
 asStatic: FALSE
