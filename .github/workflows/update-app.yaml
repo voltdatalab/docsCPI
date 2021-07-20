@@ -1,0 +1,36 @@
+on:
+  push:
+    branches: [main,master]
+
+name: deploy
+jobs:
+  render:
+    name: update-shinyapp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: "4.0.2"
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install remotes, and the updated package
+        env:
+          GITHUB_PAT: ${{ secrets.PAT }}
+        run: |
+          options(repos = "https://packagemanager.rstudio.com/all/__linux__/focal/1140568")
+          install.packages(c(
+            "remotes", "rsconnect"
+          ))
+          remotes::install_github("voltdatalab/docsCPI")
+        shell: Rscript {0}
+      - name: Execute Script
+        env:
+          GITHUB_PAT: ${{ secrets.PAT }}
+          SHINYAPPS_TOKEN: ${{ secrets.SAT }}
+          SHINYAPPS_SECRET: ${{ secrets.SAS }}
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          Rscript "data-raw/update-app.R"
