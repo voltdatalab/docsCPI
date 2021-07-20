@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-3589-3246")),
       person(given = "Volt Data Lab",
              role = c("cph", "fnd")))
-Description: What the package does (one paragraph).
+Description: Lista de documentos recebidos na CPI da Pandemia.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
