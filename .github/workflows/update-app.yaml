@@ -23,7 +23,8 @@ jobs:
         run: |
           options(repos = "https://packagemanager.rstudio.com/all/__linux__/focal/latest")
           install.packages(c(
-            "remotes", "rsconnect"
+            "remotes", "rsconnect", "shiny", "tidyr", "import", "reactable",
+            "shinydashboard"
           ))
           remotes::install_github("voltdatalab/docsCPI")
         shell: Rscript {0}
