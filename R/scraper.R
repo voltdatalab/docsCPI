@@ -31,9 +31,9 @@ get_table <- function() {
 get_doclink <- function(docname, campos) {
   campos[2] %>%
     xml2::xml_find_all(stringr::str_c(
-      ".//a[contains(text(), '",
+      ".//a[text()='",
       docname,
-      "')]"
+      "']"
     )) %>%
     xml2::xml_attr("href")
 }

@@ -4,7 +4,8 @@ import::from(magrittr, "%>%")
 shinyServer(function(input, output) {
 
   da <- docsCPI::docs %>%
-    tidyr::unnest(arquivo)
+    tidyr::unnest(arquivo) %>%
+    tidyr::unnest(arquivo_link, keep_empty = TRUE)
 
   output$docs <- reactable::renderReactable({
     da %>%
