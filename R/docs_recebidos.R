@@ -1,11 +1,9 @@
-library(magrittr)
-
-#' get_table
+#' table_docs
 #'
 #' @return tibble
 #' @export
 #'
-get_table <- function() {
+table_docs <- function() {
   url <- "https://legis.senado.leg.br/comissoes/docsRecCPI?codcol=2441"
   r <- httr::GET(url)
   html <- xml2::read_html(r)
@@ -21,14 +19,14 @@ get_table <- function() {
     dplyr::slice(-1)
 }
 
-#' get_doclink
+#' doclink
 #'
 #' @param docname document name
 #' @param campos xml nodes for columns
 #'
 #' @return url string
 #'
-get_doclink <- function(docname, campos) {
+doclink <- function(docname, campos) {
   campos[2] %>%
     xml2::xml_find_all(stringr::str_c(
       ".//a[text()='",
@@ -54,7 +52,7 @@ parse_row <- function(row) {
     xml2::xml_find_all(".//li") %>%
     xml2::xml_text()
 
-  arquivo_link <- purrr::map(arquivo_nome, get_doclink, campos = campos)
+  arquivo_link <- purrr::map(arquivo_nome, doclink, campos = campos)
 
   arquivo <- dplyr::tibble(
     arquivo_nome = arquivo_nome,
@@ -98,23 +96,3 @@ parse_row <- function(row) {
   )
   res
 }
-
-#' Documentos recebidos
-#'
-#' Informações sobre documentos recebidos na CPI da Pandemia
-#'
-#' @format Tabela com 7 colunas:
-#' \describe{
-#'   \item{n}{número}
-#'   \item{arquivo}{lista de arquivos}
-#'   \item{data_recebimento}{data de recebimento}
-#'   \item{remetente}{remetente}
-#'   \item{origem}{origem}
-#'   \item{descricao}{descrição}
-#'   \item{caixa}{caixa}
-#' }
-#'
-#' @name docs
-"docs"
-
-
