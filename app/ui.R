@@ -35,8 +35,10 @@ ui <- dashboardPage(
             width = 12,
             id = "docs",
             title = "Requerimentos votados",
-            reactable::reactableOutput("req_votados") %>%
-              shinycssloaders::withSpinner(type = 8, color = "#444444")
+            shinycssloaders::withSpinner(
+              reactable::reactableOutput("req_votados"),
+              type = 8, color = "#444444"
+            )
           )
         )
       ),
@@ -47,8 +49,10 @@ ui <- dashboardPage(
             width = 12,
             id = "docs",
             title = "Requerimentos não apreciados",
-            reactable::reactableOutput("req_nao_apreciados") %>%
-              shinycssloaders::withSpinner(type = 8, color = "#444444")
+            shinycssloaders::withSpinner(
+              reactable::reactableOutput("req_nao_apreciados"),
+              type = 8, color = "#444444"
+            )
           )
         )
       )
