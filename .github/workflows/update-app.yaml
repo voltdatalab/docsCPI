@@ -21,10 +21,10 @@ jobs:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
           install.packages(c(
-            "remotes", "rsconnect", "shiny", "tidyr", "import", "reactable",
+            "remotes", "rsconnect", "shiny", "import", "reactable",
             "shinydashboard", "lubridate", "shinycssloaders"
           ))
-          remotes::install_github("voltdatalab/docsCPI")
+          devtools::install_github("voltdatalab/docsCPI")
         shell: Rscript {0}
       - name: Execute Script
         env:
