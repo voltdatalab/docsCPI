@@ -25,7 +25,7 @@ jobs:
             "remotes", "rsconnect", "shiny", "tidyr", "import", "reactable",
             "shinydashboard", "lubridate", "shinycssloaders"
           ))
-          remotes::install_local()
+          remotes::install_github("voltdatalab/docsCPI")
         shell: Rscript {0}
       - name: Execute Script
         env:
