@@ -8,7 +8,7 @@ on:
 name: update-app
 jobs:
   update-app:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
