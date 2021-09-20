@@ -5,11 +5,10 @@ on:
     branches: ["main", "master"]
     types: [completed]
 
-name: deploy
+name: update-app
 jobs:
-  render:
-    name: update-shinyapp
-    runs-on: ubuntu-latest
+  update-app:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -18,7 +17,7 @@ jobs:
         with:
           use-public-rspm: true
       - uses: r-lib/actions/setup-pandoc@v1
-      - name: Install remotes, and the updated package
+      - name: Install packages
         env:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
@@ -34,4 +33,10 @@ jobs:
           SHINYAPPS_TOKEN: ${{ secrets.SAT }}
           SHINYAPPS_SECRET: ${{ secrets.SAS }}
         run: |
-          Rscript "data-raw/update-app.R"
+          rsconnect::setAccountInfo(
+            name = 'nucleojor',
+            token = Sys.getenv('SHINYAPPS_TOKEN'),
+            secret = Sys.getenv('SHINYAPPS_SECRET')
+          )
+          rsconnect::deployApp('app', appName = "docsCPI")
+        shell: Rscript {0}
